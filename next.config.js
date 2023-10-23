@@ -1,4 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    domains: ["tailwindui.com"], // Add the domain(s) you want to allow here
+    formats: ["image/avif", "image/webp"], // You can add other formats if needed
+    dangerouslyAllowSVG: true,
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
