@@ -17,6 +17,10 @@ import {
   PlayCircleIcon,
 } from '@heroicons/react/20/solid'
 import Image from 'next/image'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearUser, selectUser, setUser } from './redux/slices/userSlice'
+import { signOut } from 'firebase/auth'
+import { auth } from './firebase/config'
 
 const products = [
   {
@@ -55,8 +59,13 @@ function classNames(...classes: string[]) {
 }
 
 export default function Example() {
+  const user = useSelector(selectUser)
+  const dispatch = useDispatch()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
+  const handleLogout = () => {
+    dispatch(clearUser())
+    signOut(auth)
+  }
   return (
     <div className="bg-white">
       <header className="bg-white mx-12">
@@ -138,18 +147,34 @@ export default function Example() {
             </a>
           </Popover.Group>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a
-              href="#"
-              className="m-auto me-5 text-sm font-semibold leading-6 text-gray-900"
-            >
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a>
-            <button
-              type="submit"
-              className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Sign up
-            </button>
+            {user ? (
+              <>
+                <span className="my-auto me-8 text-sm font-semibold leading-6 text-gray-900">
+                  Hi, {user?.name}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Log out
+                </button>
+              </>
+            ) : (
+              <>
+                <a
+                  href="/login"
+                  className="m-auto me-5 text-sm font-semibold leading-6 text-gray-900"
+                >
+                  Log in <span aria-hidden="true">&rarr;</span>
+                </a>
+                <button
+                  type="submit"
+                  className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  <a href="/signup">Sign up</a>
+                </button>
+              </>
+            )}
           </div>
         </nav>
         <Dialog
