@@ -1,5 +1,5 @@
 'use client'
-import { auth } from '@/app/firebase/config'
+import { auth } from '@/app/_firebase/config'
 import { useEffect } from 'react'
 import {
   GoogleAuthProvider,
@@ -9,7 +9,7 @@ import {
 } from 'firebase/auth'
 import Image from 'next/image'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectUser, setUser } from '../redux/slices/userSlice'
+import { selectUser, setUser } from '../../_redux/slices/userSlice'
 import { useRouter } from 'next/navigation'
 
 const Signup = () => {

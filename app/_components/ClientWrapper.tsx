@@ -1,9 +1,9 @@
 'use client'
 
 import { useEffect } from 'react'
-import { auth } from '../firebase/config'
+import { auth } from '../_firebase/config'
 import { onAuthStateChanged } from 'firebase/auth'
-import { selectUser, setUser } from '../redux/slices/userSlice'
+import { selectUser, setUser } from '../_redux/slices/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 type Props = {

@@ -1,4 +1,4 @@
-// src/redux/slices/userSlice.ts
+// src/_redux/slices/userSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface UserState {

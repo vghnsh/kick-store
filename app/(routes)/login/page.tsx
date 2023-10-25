@@ -1,5 +1,5 @@
 'use client'
-import { auth } from '@/app/firebase/config'
+import { auth } from '@/app/_firebase/config'
 import { useSelector } from 'react-redux'
 import {
   GoogleAuthProvider,
@@ -10,7 +10,7 @@ import {
 import { useRouter } from 'next/navigation'
 
 import Image from 'next/image'
-import { selectUser } from '@/app/redux/slices/userSlice'
+import { selectUser } from '@/app/_redux/slices/userSlice'
 import { useEffect } from 'react'
 
 const Login = () => {

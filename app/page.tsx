@@ -18,9 +18,10 @@ import {
 } from '@heroicons/react/20/solid'
 import Image from 'next/image'
 import { useDispatch, useSelector } from 'react-redux'
-import { clearUser, selectUser, setUser } from './redux/slices/userSlice'
+import { clearUser, selectUser, setUser } from './_redux/slices/userSlice'
 import { signOut } from 'firebase/auth'
-import { auth } from './firebase/config'
+import { auth } from './_firebase/config'
+import Link from 'next/link'
 
 const products = [
   {
@@ -252,19 +253,21 @@ export default function Example() {
         <div className="2xl:mx-auto 2xl:container py-4 px-4 sm:px-6 xl:px-20 2xl:px-0 w-full">
           <div className="flex flex-col jusitfy-center items-center space-y-10">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-8 w-full">
-              <div className="relative group flex justify-center items-center h-3/4 w-full">
-                <Image
-                  className="object-center object-cover h-full w-full"
-                  src="https://i.ibb.co/ThPFmzv/omid-armin-m-VSb6-PFk-VXw-unsplash-1-1.png"
-                  alt="girl-image"
-                  width={1000}
-                  height={1000}
-                />
-                <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
-                  Women
-                </button>
-                <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
-              </div>
+              <Link href="categories/women">
+                <div className="relative group flex justify-center items-center h-3/4 w-full">
+                  <Image
+                    className="object-center object-cover h-full w-full"
+                    src="https://i.ibb.co/ThPFmzv/omid-armin-m-VSb6-PFk-VXw-unsplash-1-1.png"
+                    alt="girl-image"
+                    width={1000}
+                    height={1000}
+                  />
+                  <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                    Women
+                  </button>
+                  <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
+                </div>
+              </Link>
 
               <div className="flex flex-col space-y-4 md:space-y-8 mt-4 md:mt-0 h-3/4">
                 <div
