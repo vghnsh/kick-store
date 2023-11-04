@@ -1,7 +1,7 @@
 // src/_redux/slices/userSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-interface UserState {
+export interface UserState {
   user: User | null
 }
 

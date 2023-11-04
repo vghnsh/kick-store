@@ -7,6 +7,8 @@ import { useQuery } from 'react-query'
 import { useParams } from 'next/navigation' // Import useParams for routing if not already imported
 import Image from 'next/image'
 import TopLoader from '@/app/_components/TopLoader/page'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '@/app/_redux/slices/cartSlice'
 
 // Define a function to fetch category data based on the category.
 const fetchProductData = async (id: string) => {
@@ -25,6 +27,7 @@ function classNames(...classes: string[]) {
 
 const Product = () => {
   const params = useParams()
+  const dispatch = useDispatch()
   const { product } = params
 
   // Assuming category is a string
@@ -35,6 +38,12 @@ const Product = () => {
   )
   if (isLoading) {
     return <TopLoader />
+  }
+
+  const handleAddToCart = (e: { preventDefault: () => void }) => {
+    e.preventDefault()
+    dispatch(addToCart({ item: data, quantity: 1 }))
+    console.log('Item added to cart')
   }
   return (
     <div className="bg-white">
@@ -97,6 +106,7 @@ const Product = () => {
                     <button
                       type="submit"
                       className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      onClick={handleAddToCart}
                     >
                       Add to bag
                     </button>
