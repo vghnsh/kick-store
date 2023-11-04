@@ -2,6 +2,8 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'next/navigation' // Import useParams for routing if not already imported
+import Image from 'next/image'
+import TopLoader from '@/app/_components/TopLoader/page'
 
 // Define a function to fetch category data based on the category.
 const fetchCategoryData = async (category: string) => {
@@ -14,7 +16,7 @@ const fetchCategoryData = async (category: string) => {
   return response.json()
 }
 
-const categoryEnum = {
+const categoryEnum: Record<string, string> = {
   men: "men's clothing",
   women: "women's clothing",
   jewelery: 'jewelery',
@@ -35,20 +37,48 @@ const CategoryProducts: React.FC = () => {
   )
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <TopLoader />
   }
 
   if (isError) {
     return <div>Error fetching data.</div>
   }
+  const categoryToShow = categoryEnum[category as keyof typeof categoryEnum]
 
   return (
     <div>
-      <h1>{category} Products</h1>
       <ul>
-        {data.map((item: { id: number; title: string }) => (
-          <li key={item.id}>{item.title}</li>
-        ))}
+        <div className="bg-white">
+          <h1 className="text-black p-10 pt-5 font-semibold text-2xl capitalize">
+            {categoryToShow}
+          </h1>
+          <div className="mx-auto max-w-2xl px-4 pb-16 sm:px-6 sm:pb-24 lg:max-w-7xl lg:px-8">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+              {data.map((product: any) => (
+                <a key={product.id} href={product.href} className="group">
+                  <div className="aspect-h-1 aspect-w-1 w-full h-72 overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                    <Image
+                      height={100}
+                      width={100}
+                      src={product.image}
+                      alt={product.name}
+                      className="h-full w-full bg-white object-contain object-top group-hover:opacity-75"
+                    />
+                  </div>
+                  <h3 className="mt-4 h-10 line-clamp-2 text-sm text-gray-700">
+                    {product.title}
+                  </h3>
+                  <p className="mt-1 text-lg font-medium text-gray-900">
+                    ${product.price}
+                  </p>
+                  <button className="mt-2 w-full flex justify-center rounded-md bg-gray-200 px-3 py-1.5 text-sm leading-6 text-black shadow-sm hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    Add to cart
+                  </button>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
       </ul>
     </div>
   )

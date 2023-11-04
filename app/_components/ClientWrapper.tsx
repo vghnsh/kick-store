@@ -5,12 +5,15 @@ import { auth } from '../_firebase/config'
 import { onAuthStateChanged } from 'firebase/auth'
 import { selectUser, setUser } from '../_redux/slices/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import Header from './Header/page'
+import { usePathname } from 'next/navigation'
 
 type Props = {
   children: React.ReactNode
 }
 
 const ClientWrapper: React.FC<Props> = ({ children }) => {
+  const pathname = usePathname()
   const dispatch = useDispatch()
   const user = useSelector(selectUser)
   console.log('gloabal state', user)
@@ -25,7 +28,12 @@ const ClientWrapper: React.FC<Props> = ({ children }) => {
     })
   }, [dispatch])
 
-  return <div>{children}</div>
+  return (
+    <div>
+      {pathname !== '/login' && pathname !== '/signup' && <Header />}
+      {children}
+    </div>
+  )
 }
 
 export default ClientWrapper
