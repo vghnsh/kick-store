@@ -52,16 +52,29 @@ const { reducer, actions } = createSlice({
         }
       }
     },
-    clearCart: (state, action: PayloadAction<number>) => {
+
+    removeProductFromCart: (state, action: PayloadAction<Product>) => {
       const index = state.cart.findIndex(
-        (cart) => cart.item.id === action.payload,
+        (cart) => cart.item.id === action.payload.id,
       )
       if (index >= 0) {
         state.cart.splice(index, 1)
       }
     },
+    clearCart: (state) => {
+      // const index = state.cart.findIndex(
+      //   (cart) => cart.item.id === action.payload,
+      // )
+      // if (index >= 0) {
+      //   state.cart.splice(index, 1)
+      // }
+      state.cart = []
+    },
   },
 })
 
-export const { addToCart, removeFromCart, clearCart } = actions
+export const selectCartData = (state: { cart: CartState }) => state.cart.cart
+
+export const { addToCart, removeFromCart, clearCart, removeProductFromCart } =
+  actions
 export default reducer

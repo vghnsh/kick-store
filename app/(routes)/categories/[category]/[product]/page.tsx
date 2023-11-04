@@ -9,6 +9,7 @@ import Image from 'next/image'
 import TopLoader from '@/app/_components/TopLoader/page'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '@/app/_redux/slices/cartSlice'
+import { toast } from 'react-toastify'
 
 // Define a function to fetch category data based on the category.
 const fetchProductData = async (id: string) => {
@@ -43,7 +44,7 @@ const Product = () => {
   const handleAddToCart = (e: { preventDefault: () => void }) => {
     e.preventDefault()
     dispatch(addToCart({ item: data, quantity: 1 }))
-    console.log('Item added to cart')
+    toast.success('Added to cart')
   }
   return (
     <div className="bg-white">

@@ -8,12 +8,14 @@ import {
   signInWithRedirect,
 } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
+import { toast } from 'react-toastify'
 
 import Image from 'next/image'
 import { selectUser } from '@/app/_redux/slices/userSlice'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const Login = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const user = useSelector(selectUser)
   const router = useRouter()
   console.log(user)
@@ -31,12 +33,16 @@ const Login = () => {
     const password = formData.get('password') as string | null // Ensure password is of type string or null
 
     if (mail !== null && password !== null) {
+      setIsLoading(true)
       signInWithEmailAndPassword(auth, mail, password)
         .then((res) => {
           console.log('res', res)
+          setIsLoading(false)
         })
         .catch((error) => {
+          setIsLoading(false)
           console.log('error', error)
+          toast.error('Invalid credentials')
         })
     }
   }
@@ -55,7 +61,7 @@ const Login = () => {
       console.log(res)
       router.push('/')
     } catch (err) {
-      console.log('err: ', err)
+      toast.error('Invalid credentials')
     }
   }
 
@@ -105,7 +111,7 @@ const Login = () => {
                   type="email"
                   autoComplete="email"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -126,17 +132,18 @@ const Login = () => {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
 
             <div>
               <button
+                disabled={isLoading}
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign in
+                {isLoading ? 'Loading...' : 'Sign in'}
               </button>
             </div>
           </form>

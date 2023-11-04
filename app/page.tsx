@@ -83,10 +83,9 @@ export default function Example() {
                     width={1000}
                     height={1000}
                   />
-                  <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                  <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4  absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
                     Women
                   </button>
-                  <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
                 </div>
               </Link>
 
@@ -108,10 +107,9 @@ export default function Example() {
                       height={1000}
                       style={{ height: '-webkit-fill-available' }}
                     />
-                    <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                    <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
                       electronics
                     </button>
-                    <div className="m-auto absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
                   </Link>
                 </div>
                 <div
@@ -131,10 +129,9 @@ export default function Example() {
                       height={100}
                       style={{ height: '-webkit-fill-available' }}
                     />
-                    <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                    <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
                       jewelery
                     </button>
-                    <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
                   </Link>
                 </div>
               </div>
@@ -147,10 +144,9 @@ export default function Example() {
                     width={1000}
                     height={1000}
                   />
-                  <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                  <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
                     men
                   </button>
-                  <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
                 </div>
               </Link>
               <Link href="categories/men">
@@ -169,10 +165,9 @@ export default function Example() {
                     width={1000}
                     height={1000}
                   />
-                  <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                  <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
                     men
                   </button>
-                  <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
                 </div>
               </Link>
             </div>
@@ -192,11 +187,9 @@ export default function Example() {
                   width={1000}
                   height={1000}
                 />
-                <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
                   men
                 </button>
-
-                <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
               </div>
             </Link>
           </div>
