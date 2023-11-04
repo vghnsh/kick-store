@@ -95,52 +95,89 @@ export default function Example() {
                   className="relative group flex justify-center items-center w-full"
                   style={{ height: '45%' }}
                 >
-                  <Image
-                    className="object-center object-cover h-auto w-full"
-                    src="/assets/Images/elect.jpg"
-                    alt="shoe-image"
-                    width={1000}
-                    height={1000}
+                  <Link
+                    href="categories/electronics"
+                    className="flex justify-center"
                     style={{ height: '-webkit-fill-available' }}
-                  />
-                  <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
-                    electronics
-                  </button>
-                  <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
+                  >
+                    <Image
+                      className="object-center object-cover h-auto w-full"
+                      src="/assets/Images/elect.jpg"
+                      alt="shoe-image"
+                      width={1000}
+                      height={1000}
+                      style={{ height: '-webkit-fill-available' }}
+                    />
+                    <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                      electronics
+                    </button>
+                    <div className="m-auto absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
+                  </Link>
                 </div>
                 <div
                   className="relative group flex justify-center items-center w-full"
                   style={{ height: '48%' }}
                 >
-                  <Image
-                    className="object-center object-cover  w-full"
-                    src="/assets/Images/jew1.jpg"
-                    alt="watch-image"
-                    width={1000}
-                    height={100}
+                  <Link
+                    href="categories/jewelery"
+                    className="flex justify-center"
                     style={{ height: '-webkit-fill-available' }}
+                  >
+                    <Image
+                      className="object-center object-cover w-full"
+                      src="/assets/Images/jew1.jpg"
+                      alt="watch-image"
+                      width={1000}
+                      height={100}
+                      style={{ height: '-webkit-fill-available' }}
+                    />
+                    <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                      jewelery
+                    </button>
+                    <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
+                  </Link>
+                </div>
+              </div>
+              <Link href="categories/men">
+                <div className="relative group justify-center items-center h-3/4 w-full hidden lg:flex">
+                  <Image
+                    className="object-center object-cover h-full w-full"
+                    src="/assets/Images/men.jpg"
+                    alt="girl-image"
+                    width={1000}
+                    height={1000}
                   />
                   <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
-                    jewelery
+                    men
                   </button>
                   <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
                 </div>
-              </div>
-
-              <div className="relative group justify-center items-center h-3/4 w-full hidden lg:flex">
-                <Image
-                  className="object-center object-cover h-full w-full"
-                  src="/assets/Images/men.jpg"
-                  alt="girl-image"
-                  width={1000}
-                  height={1000}
-                />
-                <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
-                  men
-                </button>
-                <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
-              </div>
-              <div className="relative group flex justify-center items-center h-full w-full mt-4 md:hidden md:mt-8 lg:hidden">
+              </Link>
+              <Link href="categories/men">
+                <div className="relative group flex justify-center items-center h-full w-full mt-4 md:hidden md:mt-8 lg:hidden">
+                  <Image
+                    className="object-center object-cover h-full w-full hidden md:block"
+                    src="/assets/Images/men.jpg"
+                    alt="girl-image"
+                    width={1000}
+                    height={1000}
+                  />
+                  <Image
+                    className="object-center object-cover h-full w-full md:hidden"
+                    src="/assets/Images/men.jpg"
+                    alt="olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-2"
+                    width={1000}
+                    height={1000}
+                  />
+                  <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                    men
+                  </button>
+                  <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
+                </div>
+              </Link>
+            </div>
+            <Link href="categories/men">
+              <div className="relative group hidden md:flex justify-center items-center h-full w-full mt-4 md:mt-8 lg:hidden">
                 <Image
                   className="object-center object-cover h-full w-full hidden md:block"
                   src="/assets/Images/men.jpg"
@@ -149,7 +186,7 @@ export default function Example() {
                   height={1000}
                 />
                 <Image
-                  className="object-center object-cover h-full w-full md:hidden"
+                  className="object-center object-cover h-full w-full sm:hidden"
                   src="/assets/Images/men.jpg"
                   alt="olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-2"
                   width={1000}
@@ -158,30 +195,10 @@ export default function Example() {
                 <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
                   men
                 </button>
+
                 <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
               </div>
-            </div>
-            <div className="relative group hidden md:flex justify-center items-center h-full w-full mt-4 md:mt-8 lg:hidden">
-              <Image
-                className="object-center object-cover h-full w-full hidden md:block"
-                src="/assets/Images/men.jpg"
-                alt="girl-image"
-                width={1000}
-                height={1000}
-              />
-              <Image
-                className="object-center object-cover h-full w-full sm:hidden"
-                src="/assets/Images/men.jpg"
-                alt="olive-tatiane-Im-Ez-F9-B91-Mk-unsplash-2"
-                width={1000}
-                height={1000}
-              />
-              <button className="dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
-                men
-              </button>
-
-              <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
