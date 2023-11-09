@@ -10,6 +10,7 @@ import {
 import Image from 'next/image'
 import { selectUser } from '@/app/_redux/slices/userSlice'
 import { useRouter } from 'next/navigation'
+import { checkout } from '@/app/_utility/checkout'
 
 const Cart = () => {
   const router = useRouter()
@@ -26,9 +27,42 @@ const Cart = () => {
     dispatch(removeProductFromCart(product))
   }
 
-  const handleCheckout = () => {
+  const onCheckOut = () => {
     if (!user) {
       router.push('/login')
+    } else {
+      const lineItems: {
+        name: string
+        amount: number // Amount in cents
+        currency: string
+        quantity: number
+      }[] = []
+      cartData?.map((item) => {
+        lineItems.push({
+          name: item.item.title,
+          amount: item.item.price, // Amount in cents
+          currency: 'INR',
+          quantity: item.quantity,
+        })
+      })
+      // const lineItems = [
+      //   {
+      //     name: 'Custom Product 1',
+      //     amount: 1500, // Amount in cents
+      //     currency: 'INR',
+      //     quantity: 2,
+      //   },
+      //   {
+      //     name: 'Custom Product 2',
+      //     amount: 2500,
+      //     currency: 'INR',
+      //     quantity: 1,
+      //   },
+      // ]
+      // In your React component or client-side code
+      checkout({ lineItems })
+
+      // Render a button that calls handleCheckout when clicked
     }
   }
 
@@ -81,7 +115,7 @@ const Cart = () => {
                       <td className="w-2/5">
                         <span className="font-semibold">{item.item.title}</span>
                       </td>
-                      <td className="py-4 pl-2 w-1/5">${item.item.price}</td>
+                      <td className="py-4 pl-2 w-1/5">₹{item.item.price}</td>
                       <td className="py-4 w-1/5">
                         <div className="flex items-center">
                           <button
@@ -102,7 +136,7 @@ const Cart = () => {
                         </div>
                       </td>
                       <td className="py-4 pl-2 w-1/5">
-                        ${item.item.price * item.quantity}
+                        ₹{item.item.price * item.quantity}
                       </td>
                       <td
                         className="py-4 pl-8 w-1/5 cursor-pointer"
@@ -121,15 +155,15 @@ const Cart = () => {
               <h2 className="text-lg font-semibold mb-4">Summary</h2>
               <div className="flex justify-between mb-2">
                 <span>Subtotal</span>
-                <span>$19.99</span>
+                <span>₹19.99</span>
               </div>
               <div className="flex justify-between mb-2">
                 <span>Taxes</span>
-                <span>$1.99</span>
+                <span>₹1.99</span>
               </div>
               <div className="flex justify-between mb-2">
                 <span>Shipping</span>
-                <span>$0.00</span>
+                <span>₹0.00</span>
               </div>
               <hr className="my-2" />
               <div className="flex justify-between mb-2">
@@ -139,7 +173,7 @@ const Cart = () => {
                 </span>
               </div>
               <button
-                onClick={handleCheckout}
+                onClick={onCheckOut}
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Checkout

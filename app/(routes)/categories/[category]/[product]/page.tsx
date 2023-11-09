@@ -70,7 +70,7 @@ const Product = () => {
 
                   <h2 className="sr-only">Product information</h2>
                   <p className="text-3xl tracking-tight text-gray-900">
-                    ${data?.price}
+                    ₹{data?.price}
                   </p>
 
                   {/* Reviews */}
