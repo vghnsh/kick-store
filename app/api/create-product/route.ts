@@ -13,10 +13,12 @@ export async function POST(req: NextRequest) {
 
   try {
     // Create products and prices concurrently using Promise.all
-    const createdProducts = await Promise.all(productItems.map(async (item) => {
+    const createdProducts = await Promise.all(productItems.map(async (item: { name: any; desc: any; image: string; amount: any; quantity: any; }) => {
       // Create a product
       const product = await stripe.products.create({
         name: item.name,
+        description: item.desc,
+        images: [item.image],
       });
 
       // Create a price for the product
@@ -31,6 +33,7 @@ export async function POST(req: NextRequest) {
         productId: product.id,
         priceId: price.id,
         quantity: item.quantity,
+        
       };
     }));
 

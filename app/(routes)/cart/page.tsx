@@ -11,6 +11,8 @@ import Image from 'next/image'
 import { selectUser } from '@/app/_redux/slices/userSlice'
 import { useRouter } from 'next/navigation'
 import { checkout } from '@/app/_utility/checkout'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
+import { db } from '@/app/_firebase/config'
 
 const Cart = () => {
   const router = useRouter()
@@ -27,7 +29,10 @@ const Cart = () => {
     dispatch(removeProductFromCart(product))
   }
 
-  const onCheckOut = () => {
+  const onCheckOut = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const address = formData.get('address') as string
     if (!user) {
       router.push('/login')
     } else {
@@ -36,6 +41,8 @@ const Cart = () => {
         amount: number // Amount in cents
         currency: string
         quantity: number
+        desc: string
+        image: string
       }[] = []
       cartData?.map((item) => {
         lineItems.push({
@@ -43,6 +50,8 @@ const Cart = () => {
           amount: item.item.price, // Amount in cents
           currency: 'INR',
           quantity: item.quantity,
+          desc: item.item.description,
+          image: item.item.image,
         })
       })
       // const lineItems = [
@@ -60,8 +69,15 @@ const Cart = () => {
       //   },
       // ]
       // In your React component or client-side code
-      checkout({ lineItems })
-
+      checkout({
+        lineItems,
+        userName: user.name,
+        shippingAddress: address,
+        userId: user.id,
+        userEmail: user.email,
+        cart: cartData,
+      })
+      // console.log(res)
       // Render a button that calls handleCheckout when clicked
     }
   }
@@ -151,34 +167,56 @@ const Cart = () => {
             </div>
           </div>
           <div className="md:w-1/4 text-black">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-lg font-semibold mb-4">Summary</h2>
-              <div className="flex justify-between mb-2">
-                <span>Subtotal</span>
-                <span>₹19.99</span>
+            <form onSubmit={(e) => onCheckOut(e)} method="POST">
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Shipping Address
+                </label>
+                <div className="mt-2">
+                  <textarea
+                    id="address"
+                    name="address"
+                    autoComplete="address"
+                    required
+                    rows={2}
+                    className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
               </div>
-              <div className="flex justify-between mb-2">
-                <span>Taxes</span>
-                <span>₹1.99</span>
+
+              <div className="bg-white rounded-lg shadow-md p-6 mt-6">
+                <h2 className="text-lg font-semibold mb-4">Summary</h2>
+                <div className="flex justify-between mb-2">
+                  <span>Subtotal</span>
+                  <span>₹19.99</span>
+                </div>
+                <div className="flex justify-between mb-2">
+                  <span>Taxes</span>
+                  <span>₹1.99</span>
+                </div>
+                <div className="flex justify-between mb-2">
+                  <span>Shipping</span>
+                  <span>₹0.00</span>
+                </div>
+                <hr className="my-2" />
+                <div className="flex justify-between mb-2">
+                  <span className="font-semibold">Total</span>
+                  <span className="font-semibold">
+                    {calculateTotal(cartData)}
+                  </span>
+                </div>
+                <button
+                  // onClick={onCheckOut}
+                  type="submit"
+                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Checkout
+                </button>
               </div>
-              <div className="flex justify-between mb-2">
-                <span>Shipping</span>
-                <span>₹0.00</span>
-              </div>
-              <hr className="my-2" />
-              <div className="flex justify-between mb-2">
-                <span className="font-semibold">Total</span>
-                <span className="font-semibold">
-                  {calculateTotal(cartData)}
-                </span>
-              </div>
-              <button
-                onClick={onCheckOut}
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Checkout
-              </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>

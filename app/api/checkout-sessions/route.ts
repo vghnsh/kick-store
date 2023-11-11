@@ -13,21 +13,25 @@ export async function POST(req: NextRequest) {
     const items = await req.json();
 
     // Map the items to the format expected by Stripe
-    const lineItems = items.map(item => ({
+    const lineItemsT = items.productData.map((item: { priceId: any; quantity: any; }) => ({
       price: item.priceId,
       quantity: item.quantity,
-      
     }));
 
     // Create a new checkout session with the array of line items
     const session = await stripe.checkout.sessions.create({
       submit_type: 'pay',
       payment_method_types: ['card'],
-      line_items: lineItems,
+      line_items: lineItemsT,
       mode: 'payment',
       success_url: `${req.nextUrl.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.nextUrl.origin}/cancel`,
-    });
+      client_reference_id: items.userId,
+      customer_email: items.userEmail, // Prefill email
+           metadata: {
+        address: JSON.stringify(items.shippingAddress),
+      }, 
+    }); 
 
     // Convert the response to a NextResponse object
     return new NextResponse(JSON.stringify({ sessionId: session.id }), {
