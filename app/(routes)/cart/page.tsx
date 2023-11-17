@@ -38,7 +38,7 @@ const Cart = () => {
     } else {
       const lineItems: {
         name: string
-        amount: number // Amount in cents
+        amount: number
         currency: string
         quantity: number
         desc: string
@@ -47,7 +47,7 @@ const Cart = () => {
       cartData?.map((item) => {
         lineItems.push({
           name: item.item.title,
-          amount: item.item.price, // Amount in cents
+          amount: item.item.price,
           currency: 'INR',
           quantity: item.quantity,
           desc: item.item.description,
@@ -118,7 +118,9 @@ const Cart = () => {
                       <td className="w-2/5">
                         <span className="font-semibold">{item.item.title}</span>
                       </td>
-                      <td className="py-4 pl-2 w-1/5">₹{item.item.price}</td>
+                      <td className="py-4 pl-2 w-1/5">
+                        ₹{item.item.price * 10}
+                      </td>
                       <td className="py-4 w-1/5">
                         <div className="flex items-center">
                           <button
@@ -139,7 +141,7 @@ const Cart = () => {
                         </div>
                       </td>
                       <td className="py-4 pl-2 w-1/5">
-                        ₹{item.item.price * item.quantity}
+                        ₹{item.item.price * 10 * item.quantity}
                       </td>
                       <td
                         className="py-4 pl-8 w-1/5 cursor-pointer"
@@ -178,11 +180,11 @@ const Cart = () => {
                 <h2 className="text-lg font-semibold mb-4">Summary</h2>
                 <div className="flex justify-between mb-2">
                   <span>Subtotal</span>
-                  <span>₹19.99</span>
+                  <span>₹{calculateTotal(cartData) * 10}</span>
                 </div>
                 <div className="flex justify-between mb-2">
                   <span>Taxes</span>
-                  <span>₹1.99</span>
+                  <span>₹0.00</span>
                 </div>
                 <div className="flex justify-between mb-2">
                   <span>Shipping</span>
@@ -192,7 +194,7 @@ const Cart = () => {
                 <div className="flex justify-between mb-2">
                   <span className="font-semibold">Total</span>
                   <span className="font-semibold">
-                    {calculateTotal(cartData)}
+                    ₹{calculateTotal(cartData) * 10}
                   </span>
                 </div>
                 <button

@@ -93,7 +93,7 @@ const CategoryProducts: React.FC = () => {
                     {product.title}
                   </h3>
                   <p className="mt-1 text-lg font-medium text-gray-900">
-                    ₹{product.price}
+                    ₹{product.price * 10}
                   </p>
                   <button
                     onClick={(e) => handleAddToCart(e, product)}

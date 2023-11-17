@@ -24,8 +24,8 @@ export async function POST(req: NextRequest) {
       payment_method_types: ['card'],
       line_items: lineItemsT,
       mode: 'payment',
-      success_url: `${req.nextUrl.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.nextUrl.origin}/cancel`,
+      success_url: `${req.nextUrl.origin}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${req.nextUrl.origin}/payment-error`,
       client_reference_id: items.userId,
       customer_email: items.userEmail, // Prefill email
       metadata: {

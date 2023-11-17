@@ -15,6 +15,7 @@ import { auth } from '@/app/_firebase/config'
 import { clearUser, selectUser } from '@/app/_redux/slices/userSlice'
 import { selectCartData } from '@/app/_redux/slices/cartSlice'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 const products = [
   {
@@ -56,10 +57,12 @@ export default function Header() {
   const user = useSelector(selectUser)
   const cartData = useSelector(selectCartData)
   const dispatch = useDispatch()
+  const router = useRouter()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const handleLogout = () => {
     dispatch(clearUser())
     signOut(auth)
+    router.push('/')
   }
   return (
     <div className="bg-white sticky top-0 z-1" style={{ zIndex: 1 }}>
@@ -134,12 +137,14 @@ export default function Header() {
               </Transition>
             </Popover>
 
-            <a
-              href="/my-orders"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              My orders
-            </a>
+            {user && (
+              <a
+                href="/my-orders"
+                className="text-sm font-semibold leading-6 text-gray-900"
+              >
+                My orders
+              </a>
+            )}
           </Popover.Group>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             {user ? (

@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 
       // Create a price for the product
       const price = await stripe.prices.create({
-        unit_amount: item.amount, // Assuming this is already in the smallest currency unit (e.g., cents for USD)
+        unit_amount: Math.floor(item.amount * 1000), // Assuming this is already in the smallest currency unit (e.g., cents for USD)
         currency: 'INR',
         product: product.id,
         metadata: {

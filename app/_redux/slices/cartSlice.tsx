@@ -62,12 +62,6 @@ const { reducer, actions } = createSlice({
       }
     },
     clearCart: (state) => {
-      // const index = state.cart.findIndex(
-      //   (cart) => cart.item.id === action.payload,
-      // )
-      // if (index >= 0) {
-      //   state.cart.splice(index, 1)
-      // }
       state.cart = []
     },
   },

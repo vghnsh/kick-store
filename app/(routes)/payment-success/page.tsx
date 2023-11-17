@@ -1,6 +1,15 @@
-import React from 'react'
+'use client'
+import { clearCart } from '@/app/_redux/slices/cartSlice'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
-const page = () => {
+const Page = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(clearCart())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <div className="bg-gray-100">
       <div className="bg-white p-6  md:mx-auto">
@@ -23,10 +32,10 @@ const page = () => {
           <p> Have a great day! </p>
           <div className="py-10 text-center">
             <a
-              href="#"
+              href="/my-orders"
               className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3"
             >
-              GO BACK
+              GO to orders
             </a>
           </div>
         </div>
@@ -35,4 +44,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
