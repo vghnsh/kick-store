@@ -135,7 +135,7 @@ export default function Header() {
             </Popover>
 
             <a
-              href="#"
+              href="/my-orders"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               My orders

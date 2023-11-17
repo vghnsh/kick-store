@@ -54,20 +54,7 @@ const Cart = () => {
           image: item.item.image,
         })
       })
-      // const lineItems = [
-      //   {
-      //     name: 'Custom Product 1',
-      //     amount: 1500, // Amount in cents
-      //     currency: 'INR',
-      //     quantity: 2,
-      //   },
-      //   {
-      //     name: 'Custom Product 2',
-      //     amount: 2500,
-      //     currency: 'INR',
-      //     quantity: 1,
-      //   },
-      // ]
+
       // In your React component or client-side code
       checkout({
         lineItems,

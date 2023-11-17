@@ -26,6 +26,10 @@ export async function POST(req: NextRequest) {
         unit_amount: item.amount, // Assuming this is already in the smallest currency unit (e.g., cents for USD)
         currency: 'INR',
         product: product.id,
+        metadata: {
+          image: item.image,
+          name: item.name,
+        }
       });
 
       // Return an object containing the product ID, price ID, and quantity

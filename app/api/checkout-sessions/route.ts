@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
       cancel_url: `${req.nextUrl.origin}/cancel`,
       client_reference_id: items.userId,
       customer_email: items.userEmail, // Prefill email
-           metadata: {
+      metadata: {
         address: JSON.stringify(items.shippingAddress),
       }, 
     }); 
