@@ -105,7 +105,7 @@ const Page = () => {
   return (
     <div className="flex flex-col justify-center md:flex-row gap-4 bg-white">
       <div className="md:w-3/4">
-        <div className="bg-white rounded-lg shadow-md p-6 mb-4">
+        <div className="bg-white rounded-lg shadow-md p-6 mb-4  overflow-x-auto">
           <table className="w-full text-black">
             {sortedData?.map((item) => (
               <div key={Math.random()}>

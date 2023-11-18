@@ -77,15 +77,15 @@ const Cart = () => {
     )
   }
   return (
-    <div className="bg-gray-100 py-8 px-16">
+    <div className="bg-gray-100 py-8 lg:px-16">
       <div className="container mx-auto px-4">
         <h1 className="text-2xl font-semibold mb-6 text-black">
           Shopping Cart
         </h1>
         <div className="flex flex-col md:flex-row gap-4">
           <div className="md:w-3/4">
-            <div className="bg-white rounded-lg shadow-md p-6 mb-4">
-              <table className="w-full text-black">
+            <div className="bg-white rounded-lg shadow-md p-6 mb-4 overflow-x-auto">
+              <table className="w-full text-black ">
                 <thead style={{ marginBottom: '2rem' }}>
                   <tr>
                     <th className="text-left font-semibold pb-4">Product</th>

@@ -66,14 +66,13 @@ export default function Header() {
   }
   return (
     <div className="bg-white sticky top-0 z-1" style={{ zIndex: 1 }}>
-      <header className="bg-white mx-12">
+      <header className="bg-white sm:mx-0 lg:mx-12">
         <nav
-          className="mx-auto flex max-w-7xl items-center p-6 lg:px-8"
+          className="mx-auto flex max-w-7xl justify-around items-center p-6 lg:px-8"
           aria-label="Global"
         >
           <div className="flex mr-12">
             <a href="/" className="-m-1.5">
-              <span className="sr-only">Your Company</span>
               <Image
                 src="/assets/Images/ic_logo.png"
                 alt=""
@@ -82,16 +81,7 @@ export default function Header() {
               />
             </a>
           </div>
-          <div className="flex lg:hidden">
-            <button
-              type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-              onClick={() => setMobileMenuOpen(true)}
-            >
-              <span className="sr-only">Open main menu</span>
-              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-            </button>
-          </div>
+
           <Popover.Group className="hidden lg:flex lg:gap-x-12">
             <Popover className="relative">
               <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
@@ -146,10 +136,10 @@ export default function Header() {
               </a>
             )}
           </Popover.Group>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <div className="flex lg:flex-1 lg:justify-end">
             {user ? (
               <>
-                <span className="my-auto me-8 text-sm font-semibold leading-6 text-gray-900">
+                <span className="hidden lg:flex my-auto me-8 text-sm font-semibold leading-6 text-gray-900">
                   Hi, {user?.name}
                 </span>
                 <button
@@ -193,6 +183,16 @@ export default function Header() {
               </div>
             </Link>
           </div>
+          <div className="flex lg:hidden">
+            <button
+              type="button"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <span className="sr-only">Open main menu</span>
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
         </nav>
         <Dialog
           as="div"
@@ -204,12 +204,11 @@ export default function Header() {
           <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
                 <Image
-                  src="https://tailwindui.com/Image/logos/mark.svg?color=indigo&shade=600"
+                  src="/assets/Images/ic_logo.png"
                   alt=""
-                  width={44}
-                  height={44}
+                  width={40}
+                  height={40}
                 />
               </a>
 
@@ -228,7 +227,22 @@ export default function Header() {
                   <Disclosure as="div" className="-mx-3">
                     {({ open }) => (
                       <>
-                        <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                        <Disclosure.Button className="w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                          {user && (
+                            <div className="block">
+                              <a
+                                href="/my-orders"
+                                className="text-sm font-semibold leading-6 text-gray-900"
+                              >
+                                My orders
+                              </a>
+                              <br />
+                              <span className="lg:flex my-auto me-8 text-sm font-semibold leading-6 text-gray-900">
+                                Hi, {user?.name}
+                              </span>
+                              <br />
+                            </div>
+                          )}
                           <a
                             href="#"
                             className="text-sm font-semibold leading-6 text-gray-900"
