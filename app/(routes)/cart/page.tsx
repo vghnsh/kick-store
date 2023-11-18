@@ -175,6 +175,13 @@ const Cart = () => {
                   />
                 </div>
               </div>
+              <label
+                htmlFor="email"
+                className="mt-4 block text-sm font-medium leading-6 text-gray-900"
+              >
+                Test card for payment:
+                <br /> 4242 4242 4242 4242
+              </label>
 
               <div className="bg-white rounded-lg shadow-md p-6 mt-6">
                 <h2 className="text-lg font-semibold mb-4">Summary</h2>
